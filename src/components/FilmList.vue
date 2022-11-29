@@ -1,5 +1,5 @@
 <template>
-    <div id="FilmList" class="d-flex justify-content-between align-items-center flex-wrap">
+    <div id="FilmList" class="overflow-auto d-flex">
         <SingleFilmComp
         v-for="(element, index) in ArrayResultsApp"
         :key="index"
@@ -24,6 +24,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
+
+
 
 </style>
