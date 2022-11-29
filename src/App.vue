@@ -3,7 +3,9 @@
     <HeaderComp
       @EmitSearchTextHeader="SearchMovie"
     />
-    <MainComp/>
+    <MainComp
+      :ArrayResultsApp="ArrayResults"
+    />
   </div>
 </template>
 
@@ -11,7 +13,7 @@
 import HeaderComp from './components/HeaderComp.vue'
 import MainComp from './components/MainComp.vue'
 
-// import axios from 'axios'
+import axios from 'axios'
 
 export default {
   name: 'App',
@@ -21,16 +23,27 @@ export default {
   },
   data(){
     return{
-      SearchTextAppFromHeaderToApp: ''
+      SearchTextFromHeaderToApp: '',
+      SearchQueryUrl: '',
+      ArrayResults: [],
     }
   },
   mounted(){
-
+    
   },
   methods:{
 
-    SearchMovie(SearchText){
-      this.SearchTextAppFromHeaderToApp = SearchText
+    SearchMovie(SearchTextHeader){
+      this.SearchTextFromHeaderToApp = SearchTextHeader
+      console.log(`this is SearchTextAppFromHeaderToApp`, this.SearchTextAppFromHeaderToApp)
+
+      this.SearchQueryUrl = 'https://api.themoviedb.org/3/search/movie?api_key=5b654d7920f6e01eb40a9029f815387d&language=en-US&page=1&include_adult=false&query='
+        + this.SearchTextFromHeaderToApp;
+
+      axios.get(this.SearchQueryUrl)
+        .then((response) => {
+        this.ArrayResults = response.data.results
+      })
     }
   },
 }

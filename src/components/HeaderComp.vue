@@ -1,5 +1,5 @@
 <template>
-  <div id="HeaderComp" class="container d-flex justify-content-between align-items-center p-5 bg-dark text-white">
+  <header id="HeaderComp" class="container d-flex justify-content-between align-items-center p-5 bg-dark text-white">
     <!-- logo container -->
     <div id="LogoContainer">
       LOGO
@@ -13,10 +13,10 @@
         placeholder="search movie..." 
         aria-describedby="basic-addon1"
         v-model="SearchText"
-        @keyup.enter="$emit('EmitSearchTextHeader', SearchText)"
+        @keyup="$emit('EmitSearchTextHeader', SearchText)"
       >
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
