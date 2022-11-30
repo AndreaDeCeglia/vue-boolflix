@@ -16,6 +16,7 @@
     <div class="card-body">
       <p class="card-title"> <b>Titolo: </b> {{ ObjMovie.title }}</p>
       <p class="card-title"> <b>Titolo Originale: </b> {{ ObjMovie.original_title }}</p>
+      <!-- vote section -->
       <span class="">Vote: </span>
         <span v-if="ObjMovie.vote_average < 5.5" class="text-danger">
           {{ ObjMovie.vote_average }}/10
@@ -47,9 +48,20 @@
           <font-awesome-icon icon="fa-regular fa-star-half-stroke" />
         </div>
 
-        <div class="d-inline" v-for="n in emptyStars" :key="n">
+        <div class="d-inline" v-for="x in emptyStars" :key="x + 'k'">
           <font-awesome-icon icon="fa-regular fa-star" />
-        </div>      <!-- <p class="card-title"> <b>overview: </b> {{ ObjMovie.overview }}</p> -->
+        </div>
+         <!-- vote section closure -->
+         <!-- language section -->
+        <img
+          v-if="flags.includes(ObjMovie.original_language)"
+          :src="require(`../assets/${ObjMovie.original_language}.svg`)"
+          class="flag"
+        />
+        <p v-else>
+          Lingua Originale: {{ ObjMovie.original_language.toUpperCase() }}
+        </p>
+        <!-- Language section closure -->
     </div>
   </div>
 </template>
@@ -72,6 +84,8 @@
           fullStars: 0,
           emptyStars: 0,
           halfStar: false,
+
+          flags: ["it", "en", "fr", "de", "es", "ja", "pt"], 
 
           SingleMoviePageVisible: false,
         }
@@ -120,6 +134,10 @@
   top: 0;
   color: white;
   padding: 5%;
+
+  .flag{
+    width: 2rem;
+  }
 }
 
 .card-image{
