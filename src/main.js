@@ -9,13 +9,16 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 // import specific icons /
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
+import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'
+import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons'
+import { faStarHalfStroke } from '@fortawesome/free-regular-svg-icons'
 
 //Bootstrap importing
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
 // add icons to the library /
-library.add(faUserSecret)
+library.add(faUserSecret, faStarSolid, faStarRegular, faStarHalfStroke);
 
 
 // add font awesome icon component 

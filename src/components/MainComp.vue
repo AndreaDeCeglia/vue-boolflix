@@ -1,6 +1,6 @@
 <template>
   <div id="MainComp">
-
+    
     <FilmList
         :ArrayResultsApp="ArrayResultsApp"
     />
