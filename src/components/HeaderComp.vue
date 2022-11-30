@@ -1,8 +1,8 @@
 <template>
-  <header id="HeaderComp" class="container d-flex justify-content-between align-items-center p-5 bg-dark text-white">
+  <header id="HeaderComp" class="container d-flex justify-content-between align-items-center text-white">
     <!-- logo container -->
     <div id="LogoContainer">
-      LOGO
+      <img class="w-50" src="./../assets/netflix-logo-png-2582.png" alt="">
     </div>
     <!-- searchbar -->
     <div class="input-group mb-3 w-50">

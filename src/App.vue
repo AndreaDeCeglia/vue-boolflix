@@ -5,6 +5,7 @@
     />
     <MainComp
       :ArrayResultsApp="ArrayResults"
+      :ArraySeriesApp="ArraySeries"
     />
   </div>
 </template>
@@ -25,7 +26,9 @@ export default {
     return{
       SearchTextFromHeaderToApp: '',
       SearchQueryUrl: '',
+      SearchQueryUrlSeries: '',
       ArrayResults: [],
+      ArraySeries: [],
     }
   },
   mounted(){
@@ -44,6 +47,16 @@ export default {
         .then((response) => {
         this.ArrayResults = response.data.results
       })
+
+        this.SearchQueryUrlSeries = 'https://api.themoviedb.org/3/search/tv?api_key=5b654d7920f6e01eb40a9029f815387d&language=en-US&page=1&include_adult=false&query='
+          + this.SearchTextFromHeaderToApp;
+
+        axios.get(this.SearchQueryUrlSeries)
+          .then((response) => {
+          this.ArraySeries = response.data.results
+      })
+    
+
     }
   },
 }
@@ -58,6 +71,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  background-color: #141414;
+  min-height: 100vh;
 }
 </style>
