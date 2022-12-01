@@ -5,10 +5,19 @@
       {{ StarsRating() }}
 
       <div class="card-image">
-        <img 
-        :src="`http://image.tmdb.org/t/p/w342/${ObjSeries.backdrop_path}`" 
-        alt="Series Poster"
-        />
+        
+          <img
+            v-if="(ObjSeries.backdrop_path)" 
+            :src="`http://image.tmdb.org/t/p/w342/${ObjSeries.backdrop_path}`" 
+            alt="Movie Poster"
+          />
+          <img
+            v-else
+            class="not-found"
+            src="https://bitsofco.de/content/images/2018/12/Screenshot-2018-12-16-at-21.06.29.png" 
+            alt="Movie Poster"
+          />
+        
       </div>
       
       <div class="card-body">
@@ -126,7 +135,11 @@
   
   .card-image{
     width: 342px;
-   
+  }
+
+  .not-found{
+    width: 342px;
+    max-height: 192px;
   }
   
   #SingleSeries:hover .card-image{

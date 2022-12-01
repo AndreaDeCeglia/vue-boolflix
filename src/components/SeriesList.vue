@@ -3,7 +3,7 @@
         <h6 class="text-white text-start ms-5">
             LE NOSTRE SERIE PREMIUM :
         </h6>
-        <div id="SeriesContainer" class="overflow-auto d-flex p-5">
+        <div id="SeriesContainer" class="scrollbar overflow-auto d-flex p-5">
             <SingleSeriesComp
             v-for="(element, index) in ArraySeriesApp"
             :key="index"
@@ -35,6 +35,17 @@ export default {
 
 #SeriesList{
     background-color: #141414;
+}
+
+.scrollbar::-webkit-scrollbar {
+  background-color: #141414;
+  border-radius: 20px;
+  height: 10px;
+}
+.scrollbar::-webkit-scrollbar-thumb{
+    background-color: #141414;
+    border-radius: 20px;
+    border: 1px solid red;
 }
 
 </style>
