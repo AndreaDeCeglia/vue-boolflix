@@ -1,8 +1,8 @@
 <template>
-    <div id="SeriesList">
-        <h3 class="text-white text-start ms-5">
+    <div id="SeriesList" class="my-5">
+        <h6 class="text-white text-start ms-5">
             LE NOSTRE SERIE PREMIUM :
-        </h3>
+        </h6>
         <div id="SeriesContainer" class="overflow-auto d-flex p-5">
             <SingleSeriesComp
             v-for="(element, index) in ArraySeriesApp"
@@ -23,6 +23,7 @@ export default {
     name: 'SeriesList',
     props: {
         ArraySeriesApp: Array,
+        SeriesGenresArray: Array,
     },
     components: {
         SingleSeriesComp,

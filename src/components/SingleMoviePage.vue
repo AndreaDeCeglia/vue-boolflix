@@ -1,26 +1,39 @@
 <template>
-  <div id="SingleMoviePage">
-    <div class="offcanvas offcanvas-start text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-  <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-  </div>
-  <div class="offcanvas-body">
-    <div>
-      Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+  <div id="SingleMoviePage" class="text-white">
+    
+    <!-- {{ StarsRating() }} -->
+    
+    <div class="offcanvas-header">
+      <div id="LogoContainer">
+        <img class="w-50" src="./../assets/netflix-logo-png-2582.png" alt="">
+      </div>
+      <button type="button" class="btn-close bg-danger" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="dropdown mt-3">
-      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-        Dropdown button
-      </button>
-      <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Action</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
-        <li><a class="dropdown-item" href="#">Something else here</a></li>
-      </ul>
+    
+    <div class="offcanvas-body d-flex ms-5">
+      <div>
+        <img 
+          :src="`http://image.tmdb.org/t/p/w342/${ObjMovie.poster_path}`" 
+          alt="Movie Poster"
+        />
+      </div>
+      
+      <div id="info">
+        <p class="card-title"> <b>Titolo: </b> {{ ObjMovie.title }}</p>
+        <p class="card-title"> <b>Titolo Originale: </b> {{ ObjMovie.original_title }}</p>
+         <!-- language section -->
+         <img
+          v-if="flags.includes(ObjMovie.original_language)"
+          :src="require(`../assets/${ObjMovie.original_language}.svg`)"
+          class="flag"
+          />
+          <p v-else>
+            Lingua Originale: {{ ObjMovie.original_language.toUpperCase() }}
+          </p>
+        <!-- Language section closure -->
+      </div>
+
     </div>
-  </div>
-</div>
   </div>
 </template>
 
@@ -28,15 +41,27 @@
 export default {
     name: 'SingleMoviePage',
     props: {
-        ObjMovie: Object
-    }
+        ObjMovie: Object,
+        StarsRating: Function,
+    },
+    data(){
+        return {
+          halfVote: 0,
+          fullStars: 0,
+          emptyStars: 0,
+          halfStar: false,
+
+          flags: ["it", "en", "fr", "de", "es", "ja", "pt"],
+        }
+    },
+    
 }
 </script>
 
 <style scoped lang="scss">
 
-#SingleMoviePage{
-    height: 100vh;
-}
+.flag{
+    width: 2rem;
+  }
 
 </style>

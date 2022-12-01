@@ -1,10 +1,15 @@
 <template>
 
-  <div id="SingleFilm" @click="SingleMovieFocus()">
+  <div id="SingleFilm">
+
+    <a type="button" 
+      data-bs-toggle="offcanvas" 
+      data-bs-target="#staticBackdrop" 
+      aria-controls="staticBackdrop"
+    >
+      
+    {{ StarsRating() }}
     
-    <SingleMoviePage 
-      :class="(SingleMoviePageVisible = 'false') ? 'VisibleFalse' : 'VisibleTrue'"
-    />
     
     <div class="card-image">
       <img 
@@ -62,7 +67,20 @@
           Lingua Originale: {{ ObjMovie.original_language.toUpperCase() }}
         </p>
         <!-- Language section closure -->
-    </div>
+      </div>
+    </a>
+
+    
+    <SingleMoviePage 
+      class="offcanvas offcanvas-start" 
+      data-bs-backdrop="static" 
+      tabindex="-1" 
+      id="staticBackdrop" 
+      aria-labelledby="staticBackdropLabel" 
+      :ObjMovie="ObjMovie"
+      :StarsRating="StarsRating()"
+    />
+
   </div>
 </template>
 
@@ -73,7 +91,8 @@
 
       name: 'SingleFilmComp',
       props: {
-          ObjMovie: Object
+          ObjMovie: Object,
+          MoviesGenresArray: Array,
       },
       components: {
         SingleMoviePage,
@@ -86,8 +105,8 @@
           halfStar: false,
 
           flags: ["it", "en", "fr", "de", "es", "ja", "pt"], 
+          //      :class="(SingleMoviePageVisible = 'false') ? 'VisibleFalse' : 'VisibleTrue'"
 
-          SingleMoviePageVisible: false,
         }
       },
       methods: {
@@ -106,6 +125,7 @@
           }
           // in questo caso non c'è nessuna mezza stella
           else {
+            this.halfStar = false;
             this.fullStars = this.halfVote;
             this.emptyStars = 5 - this.fullStars;
           }
@@ -115,9 +135,7 @@
           this.SingleMoviePageVisible = true;
         }
       },
-      mounted(){
-        this.StarsRating();
-      },
+      
   }
 </script>
 
@@ -161,8 +179,13 @@
   display: none;
 }
 
-VisibleTrue{
+.VisibleTrue{
   display: block;
 }
 
+#staticBackdrop{
+  width: 100vw;
+  background-color: #141414;
+  color: white;
+}
 </style>

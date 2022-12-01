@@ -3,10 +3,12 @@
     
     <FilmList
         :ArrayResultsApp="ArrayResultsApp"
+        :MoviesGernesArray="MoviesGenresArray"
     />
 
     <SeriesList
         :ArraySeriesApp="ArraySeriesApp"
+        :SeriesGenresArray="SeriesGenresArray"
     />
 
   </div>
@@ -21,6 +23,8 @@ export default {
     props: {
         ArrayResultsApp: Array,
         ArraySeriesApp: Array,
+        MoviesGenresArray: Array,
+        SeriesGenresArray: Array,
     },
     components: {
         FilmList,

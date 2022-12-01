@@ -1,6 +1,9 @@
 <template>
 
     <div id="SingleSeries">
+
+      {{ StarsRating() }}
+
       <div class="card-image">
         <img 
         :src="`http://image.tmdb.org/t/p/w342/${ObjSeries.backdrop_path}`" 
@@ -91,15 +94,14 @@
             }
             // in questo caso non c'è nessuna mezza stella
             else {
+                this.halfStar = false;
                 this.fullStars = this.halfVote;
                 this.emptyStars = 5 - this.fullStars;
             }
             },
             
         },
-        mounted(){
-                this.StarsRating();
-        },
+       
     }
   </script>
   

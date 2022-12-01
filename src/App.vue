@@ -6,6 +6,8 @@
     <MainComp
       :ArrayResultsApp="ArrayResults"
       :ArraySeriesApp="ArraySeries"
+      :MoviesGenresArray="MoviesGenres"
+      :SeriesGenresArray="SeriesGenres"
     />
   </div>
 </template>
@@ -20,8 +22,9 @@ export default {
   name: 'App',
   components: {
     HeaderComp,
-    MainComp
+    MainComp,
   },
+  
   data(){
     return{
       SearchTextFromHeaderToApp: '',
@@ -29,11 +32,16 @@ export default {
       SearchQueryUrlSeries: '',
       ArrayResults: [],
       ArraySeries: [],
+      MoviesGenres: [],
+      SeriesGenres: [],
     }
   },
+
   mounted(){
-    
+    this.GetGenres();
+    this.GetPopular();
   },
+
   methods:{
 
     SearchMovie(SearchTextHeader){
@@ -57,6 +65,35 @@ export default {
       })
     
 
+    },
+
+    GetGenres(){
+      axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=5b654d7920f6e01eb40a9029f815387d')
+        .then((response) => {
+          this.MoviesGenres = response.data.genres;
+          console.log(`these are the genres`, this.Genres);
+
+        });
+        axios.get('https://api.themoviedb.org/3/genre/tv/list?api_key=5b654d7920f6e01eb40a9029f815387d')
+          .then((response) => {
+            this.SeriesGenres = response.data.genres;
+            console.log(`these are the genres`, this.Genres);
+        })
+    },
+
+    GetPopular(){
+      axios.get('https://api.themoviedb.org/3/movie/popular?api_key=5b654d7920f6e01eb40a9029f815387d')
+        .then((response) => {
+          for( let i=0; i < 10; i++ ){
+            this.ArrayResults = response.data.results
+          }
+        });
+      axios.get('https://api.themoviedb.org/3/tv/popular?api_key=5b654d7920f6e01eb40a9029f815387d')
+        .then((response) => {
+          for( let i=0; i < 10; i++ ){
+            this.ArraySeries = response.data.results
+          }
+        });
     }
   },
 }
